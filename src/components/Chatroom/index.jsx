@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Chatbox from './Chatbox';
 import socketIOClient from "socket.io-client";
 
-const ENDPOINT = "http://localhost:3001"
+const ENDPOINT = "http://127.0.0.1:3002"
 
 
 const Chatroom = () => {
@@ -17,11 +16,17 @@ const Chatroom = () => {
     }, []);
 
     return (
-        <>
-            <p>
-                It's <time dateTime={response}>{response}</time>
-            </p>
-            <Chatbox />
+        <> 
+        {
+            response !== "" ?
+                <p>
+                    It's <time dateTime={response}>{response}</time>
+                </p>
+                :
+                <p>
+                    Oh no , Server is down
+                </p>
+        }
         </>
     );
 }
